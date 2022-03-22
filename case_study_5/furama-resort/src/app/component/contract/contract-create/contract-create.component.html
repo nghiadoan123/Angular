@@ -1,0 +1,109 @@
+<p>contract-create works!</p>
+
+<div id="form" class="mb-3 row" style="padding-left: 50px">
+  <form novalidate="novalidate" [formGroup]="contractForm" (ngSubmit)="create()">
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">checkIn</label>
+      <div class="col-sm-10 padding">
+        <input type="date" formControlName="checkIn"/>
+      </div>
+
+    </div>
+
+    <div style="color: red"
+         *ngIf="contractForm.get('checkIn').errors?.required && (contractForm.get('checkIn').dirty ||contractForm.get('checkIn').touched)">
+      check in day cannot be blank!
+    </div>
+    <div style="color: red" *ngIf="contractForm.get('checkIn').hasError('futureDate') && (contractForm.get('checkIn').dirty||contractForm.get('checkIn').touched ) ">
+      check in day must be larger than current day!
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">checkOut</label>
+      <div class="col-sm-10 padding">
+        <input type="date" formControlName="checkOut"/>
+      </div>
+    </div>
+
+    <div style="color: red"
+         *ngIf="contractForm.get('checkOut').errors?.required && (contractForm.get('checkOut').dirty ||contractForm.get('checkOut').touched)">
+      check out day cannot be blank!
+    </div>
+
+    <div style="color: red" *ngIf="contractForm.get('checkOut').hasError('futureDate') && (contractForm.get('checkOut').dirty||contractForm.get('checkOut').touched ) ">
+      check out day must be larger than current day!
+    </div>
+
+
+    <div style="color: red" *ngIf="!contractForm.valid && (contractForm.dirty || contractForm.touched)">
+      <div *ngIf="contractForm.hasError('checkInOut')">
+        End Date must be greater than Start Date!
+      </div>
+    </div>
+
+<!--    <div class="mb-3 row" formGroupName="checkInOut">-->
+<!--      <label class="col-md-2 col-form-label">checkIn</label>-->
+<!--      <div class="col-sm-10 padding">-->
+<!--        <input class="width-select" type="date" formControlName="checkIn"/>-->
+<!--      </div>-->
+
+<!--      <label class="col-md-2 col-form-label">checkOut</label>-->
+<!--      <div class="col-sm-10 padding">-->
+<!--        <input class="width-select" type="date" formControlName="checkOut"/>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    <div *ngIf="contractForm.controls.checkInOut.hasError('checkConfirm')" style="color: red">-->
+<!--       invalid check in check out date-->
+<!--    </div>-->
+
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">deposit</label>
+      <div class="col-sm-10 padding">
+        <input class="width-select" type="text" formControlName="deposit"/>
+      </div>
+    </div>
+
+    <!--    <div-->
+    <!--      *ngIf="(!birthDay.valid && (birthDay.dirty||birthDay.touched))"  style="color: red">-->
+    <!--      birthDay is not valid-->
+    <!--    </div>-->
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">totalMoney</label>
+      <div class="col-sm-10 padding">
+        <input type="text" formControlName="totalMoney"/>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">customer</label>
+      <div class="col-sm-10 padding">
+        <select formControlName="customer">
+          <option selected [value]="null" disabled>
+            select customer
+          </option>
+          <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-md-2 col-form-label">facility</label>
+      <div class="col-sm-10 padding">
+        <select formControlName="facility" name="">
+          <option selected [value]="null" disabled>
+            select facility
+          </option>
+          <option *ngFor="let facility of facilities" [ngValue]="facility">{{facility.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-info" value="Create"/>
+  </form>
+
+</div>

@@ -1,0 +1,117 @@
+<p>customer-list works!</p>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h3>Customer List</h3>
+      <p>Up the best of Service to you.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12  text-center">
+      <span><a href="#" class="text-decoration-none text-primary fs-6">Explore ></a></span>
+      <span> <a href="#" class="text-decoration-none text-primary  fs-6">Top Surface deals ></a></span>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid px-5">
+  <div class="row">
+    <div class="col-lg-12  text-lg-start">
+<!--              <button type="button" routerLink="/customer/create" class="btn btn-primary" >Add new Customer</button>-->
+      <button (click)="openDialogCreate()" class="btn btn-primary">
+        Add new Customer
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid px-5">
+  <div class="col-3">
+    <nav class="navbar">
+      <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+             placeholder="enter your search name">
+    </nav>
+  </div>
+
+</div>
+
+<div class="container-fluid p-5">
+  <div class="row">
+    <!--    <table class="table table-striped w-50 mx-auto" matSort (matSortChange)="sortData($event)">-->
+    <table class="table table-striped w-100 mx-0">
+      <thead class="thead-inverse">
+      <tr>
+        <th (click)="sort('id')">ID &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('codeNumber')">Code Number</th>
+        <th (click)="sort('birthDay')">Birth Day&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('gender')">Gender&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('idCard')">Id Card&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('phone')">Phone&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('email')">Email&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('address')">Address&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('customerType')">Customer Type&nbsp;<i class="fa fa-sort"></i></th>
+      </tr>
+      </thead>
+      <tbody>
+<!--      <tr *ngFor="let cus of customers | orderBy: key: reverse | paginate: {itemsPerPage:2,currentPage:page}"> -->
+      <tr *ngFor="let cus of customers">
+        <td>{{cus.id}}</td>
+        <td>{{cus.name}}</td>
+        <td>{{cus.codeNumber}}</td>
+        <td>{{cus.birthDay}}</td>
+        <td>{{cus.gender}}</td>
+        <td>{{cus.idCard}}</td>
+        <td>{{cus.phone}}</td>
+        <td>{{cus.email}}</td>
+        <td>{{cus.address}}</td>
+        <td>{{cus.customerType.name}}</td>
+        <td class="r-o">
+<!--          <button (click)="getId(cus.id)" class="btn btn-danger" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--            Delete-->
+<!--          </button>-->
+          <button (click)="openDialogDelete(cus)" class="btn btn-danger">  Delete</button>
+
+        </td>
+
+        <td class="r-o">
+<!--          <button [routerLink]="['/customer/edit',cus.id]" data-toggle="modal" data-target="#myModal"-->
+<!--                  class="btn btn-primary">-->
+<!--            Edit-->
+<!--          </button>-->
+
+          <button (click)="openDialogEdit(cus)" class="btn btn-primary">
+            Edit
+          </button>
+
+        </td>
+      </tr>
+      </tbody>
+<!--      <pagination-controls (pageChange)="page = $event"></pagination-controls>-->
+    </table>
+
+<!--    &lt;!&ndash;Delete Modal &ndash;&gt;-->
+<!--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--      <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-header">-->
+<!--            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--          </div>-->
+<!--          <div class="modal-body">-->
+<!--            Bạn có muốn xóa {{id1}} ko-->
+<!--          </div>-->
+<!--          <div  class="modal-footer">-->
+<!--            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--            <button type="button" class="btn btn-primary" (click)="delete(id1)">Save changes</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>
